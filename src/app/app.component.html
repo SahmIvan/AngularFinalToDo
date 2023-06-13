@@ -1,0 +1,53 @@
+<div
+  class="flex flex-col h-screen bg-gradient-to-r via-slate-400
+  to-slate-800 justify-center items-center"
+>
+  <div
+    class="w-full max-w-xl h-4/6 my-10 shadow-2xl rounded-lg
+    overflow-y-auto flex flex-col bg-white"
+  >
+    <div
+      class="bg-cyan-900 text-white py-2 px-4 font-semibold
+      justify-center items-center text-center"
+    >
+      To-Do List
+    </div>
+
+    <form [formGroup]="this.form">
+      <div class="flex flex-row w-full overflow-hidden p-4 space-x-2">
+        <input
+        formControlName="title"
+          class="flex-grow px-2 py-2 rounded-xl border-2"
+          type="text"
+          name=""
+          id=""
+          placeholder="New task"
+        />
+        <input
+        formControlName="deadline"
+          class="flex-grow px-2 py-2 rounded-xl border-2"
+          type="date"
+          name=""
+          id=""
+        />
+        <button (click)="this.validar()"  class="bg-orange-500 text-white rounded-xl py-2 px-4" >
+          Add task
+        </button>
+      </div>
+    </form>
+    <h1 class="font-bold text-center text-lg">Pending Tasks</h1>
+    <app-tareas *ngFor="let task of this.tasks" [task]="task" [done]="this.task.completed" ></app-tareas>
+
+    <div
+
+      class="justify-center items-center text-center max-w-xs h-auto
+      m-3 rounded-lg overflow-hidden bg-yellow-400 text-lg underline-offset-4"
+    *ngIf="this.isCompleted"
+    >
+      Your To-do List is Empty!
+    </div>
+
+    <h1 class="font-bold text-center text-lg">Completed Tasks</h1>
+    <app-completo *ngFor="let task of this.tasks" [task]="task" [done]="this.task.completed" ></app-completo>
+  </div>
+</div>
