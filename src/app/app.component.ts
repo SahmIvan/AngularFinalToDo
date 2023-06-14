@@ -18,6 +18,7 @@ isCompleted: boolean = false;
   form: FormGroup = new FormGroup({
     title: new FormControl('', [
       Validators.required,
+      Validators.minLength(2)
     ]),
     deadline: new FormControl('', [
       Validators.required,
@@ -29,9 +30,15 @@ isCompleted: boolean = false;
   }
 
   async validar() {
+
     if (this.form.valid) {
       await this.taskService.getTask(this.form.value);
       await this.taskService.getTasks().then((tasks) => (this.tasks = tasks));
+
+
+
+    } else {
+      alert('Porfavor llenar todos los campos');
     }
   }
 
